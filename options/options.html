@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blocker Options</title>
+    <link href="options.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="header-container">
+                <h1>Blocker</h1>
+                <span class="version"></span>
+            </div>
+            <nav>
+                <button class="nav-button active" data-section="general">
+                    <i class="fas fa-cog"></i>
+                    <span>General Settings</span>
+                </button>
+                <button class="nav-button" data-section="block">
+                    <i class="fas fa-ban"></i>
+                    <span>Block List</span>
+                </button>
+                <button class="nav-button" data-section="white">
+                    <i class="fas fa-check-circle"></i>
+                    <span>White List</span>
+                </button>
+                <button class="nav-button" data-section="override">
+                    <i class="fas fa-code"></i>
+                    <span>Content Overrides</span>
+                </button>
+                <button class="nav-button" data-section="rules">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Rules</span>
+                </button>
+                <button class="nav-button" data-section="import">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Import/Export</span>
+                </button>
+                <button class="nav-button" data-section="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Right Content Area -->
+        <div class="content">
+            <!-- General Settings Section -->
+            <section id="general" class="section-content active">
+                <h2>General Settings</h2>
+                <div class="setting-item">
+                    <label class="switch-label">
+                        <span class="switch-text">Enable Blocker</span>
+                        <div class="switch">
+                            <input type="checkbox" id="enableBlocker">
+                            <span class="slider"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label class="switch-label">
+                        <span class="switch-text">Block All Javascript</span>
+                        <div class="switch">
+                            <input type="checkbox" id="blockAllJs">
+                            <span class="slider"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <button id="clearLogs">Clear Request Logs</button>
+                </div>
+            </section>
+
+            <!-- Block List Section -->
+            <section id="block" class="section-content">
+                <div class="section-header">
+                    <h2>Block List</h2>
+                    <div class="header-actions">
+                        <button id="refreshBlockList" class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button id="clearBlockList" class="danger-btn">
+                            <i class="fas fa-trash-alt"></i> Delete All
+                        </button>
+                    </div>
+                </div>
+                <div class="list-container">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <textarea id="blockUrlInput" placeholder="Enter URLs to block (separate multiple URLs with commas)&#10;Example: example.com, test.com, site.org" rows="3"></textarea>
+                            <button id="addBlockUrl">
+                                <i class="fas fa-plus"></i> Add URLs
+                            </button>
+                        </div>
+                        <div class="input-note">
+                            <i class="fas fa-info-circle note-icon"></i>
+                            <span>Enter one or multiple URLs separated by commas. URLs will be matched partially (e.g., "example.com" will match "www.example.com" and "example.com/page")</span>
+                        </div>
+                    </div>
+                    <div class="list-actions">
+                        <span class="item-count">
+                            <i class="fas fa-list"></i>
+                            <span id="blockListCount">0 items</span>
+                        </span>
+                    </div>
+                    <div class="table-container">
+                        <table class="url-table">
+                            <thead>
+                                <tr>
+                                    <th>Actions</th>
+                                    <th>URL Pattern</th>
+                                    <th>Added Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blockList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- White List Section -->
+            <section id="white" class="section-content">
+                <div class="section-header">
+                    <h2>White List</h2>
+                    <div class="header-actions">
+                        <button id="refreshWhiteList" class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button id="clearWhiteList" class="danger-btn">
+                            <i class="fas fa-trash-alt"></i> Delete All
+                        </button>
+                    </div>
+                </div>
+                <div class="list-container">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <textarea id="whiteUrlInput" placeholder="Enter URLs to whitelist (separate multiple URLs with commas)&#10;Example: example.com, test.com, site.org" rows="3"></textarea>
+                            <button id="addWhiteUrl">
+                                <i class="fas fa-plus"></i> Add URLs
+                            </button>
+                        </div>
+                        <div class="input-note">
+                            <i class="fas fa-info-circle note-icon"></i>
+                            <span>Enter one or multiple URLs separated by commas. URLs will be matched partially (e.g., "example.com" will match "www.example.com" and "example.com/page")</span>
+                        </div>
+                    </div>
+                    <div class="list-actions">
+                        <span class="item-count">
+                            <i class="fas fa-list"></i>
+                            <span id="whiteListCount">0 items</span>
+                        </span>
+                    </div>
+                    <div class="table-container">
+                        <table class="url-table">
+                            <thead>
+                                <tr>
+                                    <th>Actions</th>
+                                    <th>URL Pattern</th>
+                                    <th>Added Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="whiteList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Override Section -->
+            <section id="override" class="section-content">
+                <h2>Content Override Settings</h2>
+                <div class="override-container">
+                    <div class="input-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Target URL Pattern:</label>
+                                <input type="text" id="overrideUrl" placeholder="e.g., https://example.com/script.js">
+                            </div>
+                            <div class="form-group">
+                                <label>Resource Type:</label>
+                                <select id="overrideType">
+                                    <option value="script">JavaScript</option>
+                                    <option value="stylesheet">CSS</option>
+                                    <option value="image">Image</option>
+                                    <option value="font">Font</option>
+                                    <option value="media">Media</option>
+                                    <option value="websocket">WebSocket</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Content Source:</label>
+                                <select id="sourceType">
+                                    <option value="upload">Upload File</option>
+                                    <option value="url">From URL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row source-inputs">
+                            <div class="form-group">
+                                <label>Block from where?</label>
+                                <select id="blockLocations" multiple size="3">
+                                    <option value="main_frame" selected>Top-Level Pages</option>
+                                    <option value="sub_frame">3rd-Party Embeds</option>
+                                    <option value="xmlhttprequest">Data Requests</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="uploadFileSection">
+                                <label>Upload File:</label>
+                                <div class="file-input-wrapper">
+                                    <input type="file" id="fileInput" accept=".js,.css,.html,.jpg,.jpeg,.png,.gif,.svg,.webp,.woff,.woff2,.ttf,.otf,*/*">
+                                    <span class="file-name">No file chosen</span>
+                                </div>
+                            </div>
+                            <div class="form-group" id="sourceUrlSection">
+                                <label>Source URL:</label>
+                                <input type="text" id="sourceUrl" placeholder="https://example.com/source.js">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label>Priority:</label>
+                                <input type="number" id="overridePriority" min="0" value="1" placeholder="Enter priority number">
+                                <div class="input-note">
+                                    <i class="fas fa-info-circle note-icon"></i>
+                                    <span>Higher priority overrides take precedence (0 is lowest priority)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="status-checkbox">
+                                <input type="checkbox" id="overrideStatus" checked>
+                                <label for="overrideStatus">Enable Override</label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="button-row">
+                                <button id="addOverride" class="primary-btn">
+                                    <i class="fas fa-plus"></i> Add Override
+                                </button>
+                                <button id="clearOverrideList" class="danger-btn">
+                                    <i class="fas fa-trash-alt"></i> Delete All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-actions">
+                        <span class="item-count">
+                            <i class="fas fa-list"></i>
+                            <span id="overrideListCount">0 items</span>
+                        </span>
+                    </div>
+                    <div class="table-container">
+                        <table class="url-table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                    <th>Target URL Pattern</th>
+                                    <th>Resource Type</th>
+                                    <th>Source</th>
+                                    <th>Block Locations</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody id="overrideList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rules Section -->
+            <section id="rules" class="section-content">
+                <div class="section-header">
+                    <h2>Rules Management</h2>
+                    <div class="header-actions">
+                        <button id="refreshRules" class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button id="createRule" class="primary-btn">
+                            <i class="fas fa-plus"></i> Add Rule
+                        </button>
+                        <button id="clearAllRules" class="danger-btn">
+                            <i class="fas fa-trash-alt"></i> Delete All
+                        </button>
+                    </div>
+                </div>
+                <div class="rules-container">
+                    <div class="table-container rules-table-container">
+                        <table class="url-table">
+                            <thead>
+                                <tr>
+                                    <th>Actions</th>
+                                    <th>Rule ID</th>
+                                    <th>Priority</th>
+                                    <th>Rule Type</th>
+                                    <th>Resource Type</th>
+                                    <th>Action Type</th>
+                                    <th>URL Filter</th>
+                                    <th>Last Modified</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rulesList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rule Details Modal -->
+            <div id="viewRuleModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="header-content">
+                            <h3>Rule Details</h3>
+                            <span class="status-badge" id="ruleModalStatusBadge"></span>
+                        </div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="rule-json-viewer">
+                            <pre id="ruleJsonContent"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Rule Modal -->
+            <div id="createRuleModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="header-content">
+                            <h3>Create New Rule</h3>
+                        </div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createRuleForm">
+                            <div class="form-header">
+                                <div class="form-row">
+                                    <div class="form-group flex-1">
+                                        <label for="ruleType">Rule Type</label>
+                                        <select id="ruleType" name="ruleType" required>
+                                            <option value="dynamic">Dynamic Rule</option>
+                                            <option value="session">Session Rule</option>
+                                        </select>
+                                        <div class="input-note">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>Dynamic rules persist across browser sessions, while session rules are temporary</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group flex-1">
+                                        <label for="rulePriority">Priority</label>
+                                        <input type="number" id="rulePriority" name="rulePriority" min="1" value="1">
+                                        <div class="input-note">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>Higher priority rules execute first (default: 1)</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group flex-1">
+                                        <label for="actionType">Action Type</label>
+                                        <select id="actionType" name="actionType" required>
+                                            <option value="block">Block</option>
+                                            <option value="allow">Allow</option>
+                                            <option value="redirect">Redirect</option>
+                                            <option value="upgradeScheme">Upgrade Scheme</option>
+                                            <option value="modifyHeaders">Modify Headers</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-main">
+                                <div class="form-section">
+                                    <h4>Rule Conditions</h4>
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label for="urlFilter">URL Filter</label>
+                                            <input type="text" id="urlFilter" name="urlFilter" placeholder="||example.com^">
+                                            <div class="input-note">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>URL matching pattern (e.g., ||example.com^)</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group flex-1">
+                                            <label for="regexFilter">Regex Filter</label>
+                                            <input type="text" id="regexFilter" name="regexFilter" placeholder="\bads\b">
+                                            <div class="input-note">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>Alternative to URL filter (regex)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" id="isUrlFilterCaseSensitive" name="isUrlFilterCaseSensitive">
+                                                <span>Case Sensitive URL Filter</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label for="resourceTypes">Resource Types</label>
+                                            <select id="resourceTypes" name="resourceTypes" multiple size="8">
+                                                <option value="main_frame">Main Frame</option>
+                                                <option value="sub_frame">Sub Frame</option>
+                                                <option value="stylesheet">Stylesheet</option>
+                                                <option value="script">Script</option>
+                                                <option value="image">Image</option>
+                                                <option value="font">Font</option>
+                                                <option value="object">Object</option>
+                                                <option value="xmlhttprequest">XMLHttpRequest</option>
+                                                <option value="ping">Ping</option>
+                                                <option value="csp_report">CSP Report</option>
+                                                <option value="media">Media</option>
+                                                <option value="websocket">WebSocket</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group flex-1">
+                                            <label for="excludedResourceTypes">Excluded Resource Types</label>
+                                            <select id="excludedResourceTypes" multiple size="8">
+                                                <option value="main_frame">Main Frame</option>
+                                                <option value="sub_frame">Sub Frame</option>
+                                                <option value="stylesheet">Stylesheet</option>
+                                                <option value="script">Script</option>
+                                                <option value="image">Image</option>
+                                                <option value="font">Font</option>
+                                                <option value="object">Object</option>
+                                                <option value="xmlhttprequest">XMLHttpRequest</option>
+                                                <option value="ping">Ping</option>
+                                                <option value="csp_report">CSP Report</option>
+                                                <option value="media">Media</option>
+                                                <option value="websocket">WebSocket</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Redirect Options -->
+                                <div id="redirectOptions" class="form-section" style="display: none;">
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label for="redirectUrl">Redirect URL</label>
+                                            <input type="url" id="redirectUrl" name="redirectUrl" placeholder="https://example.com/blocked.html">
+                                        </div>
+                                        <div class="form-group flex-1">
+                                            <label for="redirectExtensionPath">Extension Path</label>
+                                            <input type="text" id="redirectExtensionPath" name="redirectExtensionPath" placeholder="/blocked.html">
+                                            <div class="input-note">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>Alternative to URL</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Header Options -->
+                                <div id="headerOptions" class="form-section" style="display: none;">
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label>Request Headers</label>
+                                            <div class="header-group">
+                                                <input type="text" id="requestHeaderName" placeholder="Header Name">
+                                                <select id="requestHeaderOperation">
+                                                    <option value="set">Set</option>
+                                                    <option value="remove">Remove</option>
+                                                    <option value="append">Append</option>
+                                                </select>
+                                                <input type="text" id="requestHeaderValue" placeholder="Header Value">
+                                                <button type="button" id="addRequestHeader" class="secondary-btn">
+                                                    <i class="fas fa-plus"></i> Add Header
+                                                </button>
+                                            </div>
+                                            <div id="requestHeadersList" class="headers-list"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group flex-1">
+                                            <label>Response Headers</label>
+                                            <div class="header-group">
+                                                <input type="text" id="responseHeaderName" placeholder="Header Name">
+                                                <select id="responseHeaderOperation">
+                                                    <option value="set">Set</option>
+                                                    <option value="remove">Remove</option>
+                                                    <option value="append">Append</option>
+                                                </select>
+                                                <input type="text" id="responseHeaderValue" placeholder="Header Value">
+                                                <button type="button" id="addResponseHeader" class="secondary-btn">
+                                                    <i class="fas fa-plus"></i> Add Header
+                                                </button>
+                                            </div>
+                                            <div id="responseHeadersList" class="headers-list"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="primary-btn">
+                                    <i class="fas fa-save"></i> Create Rule
+                                </button>
+                                <button type="button" class="secondary-btn" id="cancelCreateRule">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Override Modal -->
+            <div id="viewOverrideModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="header-content">
+                            <h3>Override Details</h3>
+                            <span class="status-badge" id="modalStatusBadge"></span>
+                        </div>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="details-grid">
+                            <div class="details-section">
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-link"></i>
+                                        <label>Target URL Pattern</label>
+                                    </div>
+                                    <div id="modalUrlPattern" class="detail-value url-value"></div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-file-code"></i>
+                                        <label>Resource Type</label>
+                                    </div>
+                                    <div id="modalResourceType" class="detail-value"></div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-file-upload"></i>
+                                        <label>Source</label>
+                                    </div>
+                                    <div id="modalSource" class="detail-value"></div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <label>Added Date</label>
+                                    </div>
+                                    <div id="modalAddedDate" class="detail-value"></div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-filter"></i>
+                                        <label>Block Locations</label>
+                                    </div>
+                                    <div id="modalBlockLocations" class="detail-value"></div>
+                                </div>
+
+                                <div class="detail-item">
+                                    <div class="detail-header">
+                                        <i class="fas fa-sort-numeric-up"></i>
+                                        <label>Priority</label>
+                                    </div>
+                                    <div id="modalPriority" class="detail-value"></div>
+                                </div>
+                            </div>
+
+                            <div class="preview-section">
+                                <div class="detail-header">
+                                    <i class="fas fa-eye"></i>
+                                    <label>Content Preview</label>
+                                </div>
+                                <div class="preview-container">
+                                    <div id="modalContentPreview" class="detail-value content-preview"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Import/Export Section -->
+            <section id="import" class="section-content">
+                <h2>Import/Export Settings</h2>
+                <div class="import-export">
+                    <div class="export-section">
+                        <h3>Export Settings</h3>
+                        <button id="exportSettings">Export to File</button>
+                    </div>
+                    <div class="import-section">
+                        <h3>Import Settings</h3>
+                        <div class="file-input-container">
+                            <input type="file" id="importFile" accept=".json">
+                            <button id="importSettings">Import from File</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section-content">
+                <h2>About Blocker</h2>
+                <div class="about-container">
+                    <div class="about-header">
+                        <img src="../icons/icon128.png" alt="Blocker Logo" class="about-logo">
+                        <div class="about-info">
+                            <h3>Blocker</h3>
+                            <p class="version">Version <span id="extensionVersion">1.0.0</span></p>
+                        </div>
+                    </div>
+                    <div class="about-description">
+                        <p>Blocker is a powerful browser extension that helps you control and customize your web browsing experience. Block unwanted content, manage scripts, and override website resources with ease.</p>
+                        <p>With Blocker, you have complete control over your browsing environment. You can block specific domains, URLs, or entire categories of content. The extension's advanced rule system allows you to create sophisticated blocking patterns while its whitelist feature ensures your trusted websites remain accessible.</p>
+                        <p>The unique content override feature lets you replace website resources with your own custom content, giving you unprecedented control over how websites behave in your browser. Whether you want to block tracking scripts, replace intrusive ads, or modify website functionality, Blocker provides the tools you need.</p>
+                        <p>Built with performance and user privacy in mind, Blocker operates entirely within your browser and doesn't send any data to external servers. All your settings are stored locally and can be easily exported for backup or sharing across devices.</p>
+                    </div>
+                    <div class="about-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li><i class="fas fa-ban"></i> Block unwanted URLs and domains</li>
+                            <li><i class="fas fa-check-circle"></i> Whitelist trusted websites</li>
+                            <li><i class="fas fa-code"></i> Override website content and resources</li>
+                            <li><i class="fas fa-shield-alt"></i> Advanced rules management</li>
+                            <li><i class="fas fa-exchange-alt"></i> Import/Export settings</li>
+                        </ul>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://github.com/yourusername/blocker" target="_blank" class="about-link">
+                            <i class="fab fa-github"></i>
+                            View on GitHub
+                        </a>
+                        <a href="https://github.com/yourusername/blocker/issues" target="_blank" class="about-link">
+                            <i class="fas fa-bug"></i>
+                            Report an Issue
+                        </a>
+                        <a href="https://github.com/yourusername/blocker/wiki" target="_blank" class="about-link">
+                            <i class="fas fa-book"></i>
+                            Documentation
+                        </a>
+                    </div>
+                    <div class="rate-section">
+                        <p>Enjoying Blocker? Let us know what you think!</p>
+                        <button id="rateButton" class="rate-button">
+                            <i class="fas fa-star"></i>
+                            Rate on Extension Store
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html> 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blocker</title>
+    <link href="popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Menu -->
+        <div class="top-menu">
+            <div class="title">Blocker <span class="version"></span></div>
+            <div class="top-actions">
+                <button id="clearLogs" title="Clear Request Logs">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <button id="openOptions" title="Open Options">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <button id="reloadTab" title="Reload Tab">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            <div class="right-controls">
+                <button id="blockJs" title="Block JavaScript"><i class="fas fa-code"></i> JS</button>
+                <button id="blockTabJs" title="Block Tab JavaScript"><i class="fas fa-window-maximize"></i> Tab JS</button>
+                <button id="toggleMonitoring" title="Start/Stop Monitoring"><i class="fas fa-play"></i> Start Monitor</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" id="searchRequest" placeholder="Search requests...">
+            <select id="filterType">
+                <option value="all">All Types</option>
+                <option value="script">JavaScript</option>
+                <option value="stylesheet">CSS</option>
+                <option value="image">Images</option>
+                <option value="font">Fonts</option>
+                <option value="media">Media</option>
+                <option value="xmlhttprequest">XHR/Fetch</option>
+                <option value="other">Other</option>
+            </select>
+            <select id="filterStatus">
+                <option value="all">All Status</option>
+                <option value="blocked">Blocked</option>
+                <option value="allowed">Allowed</option>
+            </select>
+        </div>
+
+        <!-- Requests Table -->
+        <div class="table-container">
+            <div id="noRequestsMessage" class="no-requests-message" style="display: none;">
+                <i class="fas fa-info-circle"></i>
+                <p>No requests have been logged yet.</p>
+            </div>
+            <div id="requestsTableContainer">
+                <table id="requestsTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="requestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-item">
+                    <label>Status:</label>
+                    <span id="modalStatus"></span>
+                </div>
+                <div class="detail-item">
+                    <label>Type:</label>
+                    <span id="modalType"></span>
+                </div>
+                <div class="detail-item">
+                    <label>URL:</label>
+                    <div id="modalUrl" class="url-container"></div>
+                </div>
+                <div class="detail-item">
+                    <label>Time:</label>
+                    <span id="modalTime"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 
