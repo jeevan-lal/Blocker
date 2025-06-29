@@ -6,7 +6,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/YOUR_EXTENSION_ID.svg?color=blue)](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jeevan-lal/Blocker/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/jeevan-lal/Blocker)](https://github.com/jeevan-lal/Blocker/issues)
+[![GitHub stars](https://img.shields.io/github/stars/jeevan-lal/Blocker)](https://github.com/jeevan-lal/Blocker/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/jeevan-lal/Blocker)](https://github.com/jeevan-lal/Blocker/network)
+[![Languages](https://img.shields.io/badge/Languages-JavaScript%2053.3%25%20%7C%20HTML%2026.8%25%20%7C%20CSS%2019.9%25-blue)](https://github.com/jeevan-lal/Blocker)
 
 </div>
 
@@ -109,10 +113,14 @@ The options page allows you to configure:
 
 ## 🤝 Contributing
 
-Feel free to submit issues and pull requests for new features or bug fixes.
+Feel free to submit issues and pull requests for new features or bug fixes. Visit our [GitHub repository](https://github.com/jeevan-lal/Blocker) to:
+
+- [Submit an issue](https://github.com/jeevan-lal/Blocker/issues)
+- [Create a pull request](https://github.com/jeevan-lal/Blocker/pulls)
+- [Fork the project](https://github.com/jeevan-lal/Blocker/fork)
 
 ## 📄 License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jeevan-lal/Blocker/blob/main/LICENSE)
 
 MIT License - feel free to use this code in your own projects. 
