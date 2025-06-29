@@ -1,0 +1,15 @@
+{
+  "name": "blocker",
+  "version": "0.0.1",
+  "description": "A powerful web request manager that lets you block, filter, and modify network requests across websites using customizable rules",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "zip": "node scripts/zip.js",
+    "package": "npm run build && npm run zip"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.2.0",
+    "archiver": "^6.0.1"
+  },
+  "private": true
+} 
