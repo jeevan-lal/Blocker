@@ -1,11 +1,14 @@
 {
   "name": "blocker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A powerful web request manager that lets you block, filter, and modify network requests across websites using customizable rules",
   "scripts": {
+    "version-sync": "node scripts/version-sync.js",
+    "prebuild": "npm run version-sync",
     "build": "node scripts/build.js",
+    "prezip": "npm run version-sync",
     "zip": "node scripts/zip.js",
-    "package": "npm run build && npm run zip"
+    "package": "npm run version-sync && npm run build && npm run zip"
   },
   "devDependencies": {
     "fs-extra": "^11.2.0",

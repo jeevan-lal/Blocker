@@ -1,14 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Blocker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A powerful web request manager that lets you block, filter, and modify network requests across websites using customizable rules",
   "permissions": [
     "storage",
     "webRequest",
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
-    "declarativeNetRequestFeedback",
     "tabs",
     "scripting"
   ],
@@ -41,4 +40,4 @@
       }
     ]
   }
-} 
+}
