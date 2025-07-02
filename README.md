@@ -5,7 +5,7 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/YOUR_EXTENSION_ID.svg?color=blue)](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pklddjkiafafofkgjmalldnakfhfpcao.svg?color=blue)](https://chrome.google.com/webstore/detail/pklddjkiafafofkgjmalldnakfhfpcao)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jeevan-lal/Blocker/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/jeevan-lal/Blocker)](https://github.com/jeevan-lal/Blocker/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jeevan-lal/Blocker)](https://github.com/jeevan-lal/Blocker/stargazers)
@@ -54,7 +54,7 @@
 ## 📥 Installation
 
 ### <img src="icons/icon16.png" width="16" height="16"> Chrome Web Store
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/YOUR_EXTENSION_ID.svg?style=for-the-badge&color=blue&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pklddjkiafafofkgjmalldnakfhfpcao.svg?style=for-the-badge&color=blue&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/pklddjkiafafofkgjmalldnakfhfpcao)
 
 > 🚀 Click the badge above to install from the Chrome Web Store.
 
