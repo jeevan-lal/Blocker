@@ -1,6 +1,6 @@
 {
   "name": "blocker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A powerful web request manager that lets you block, filter, and modify network requests across websites using customizable rules",
   "scripts": {
     "version-sync": "node scripts/version-sync.js",
@@ -15,4 +15,4 @@
     "archiver": "^6.0.1"
   },
   "private": true
-} 
+}
